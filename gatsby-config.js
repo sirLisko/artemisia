@@ -1,17 +1,28 @@
-require("dotenv").config({
-  path: `.env`
+require('dotenv').config({
+  path: `.env`,
 });
 
 module.exports = {
+  siteMetadata: {
+    title: 'Artemis Midwifery',
+  },
   plugins: [
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-root-import',
     {
-      resolve: "gatsby-source-sanity",
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'src/utils/typography',
+      },
+    },
+    {
+      resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.SANITY_ID,
         queries: [
           {
-            name: "person",
-            type: "Person",
+            name: 'person',
+            type: 'Person',
             groq: `
               *[_type == 'person']{
                 _id,
@@ -20,10 +31,10 @@ module.exports = {
                 quote,
                 overview
               }
-            `
-          }
-        ]
-      }
-    }
-  ]
+            `,
+          },
+        ],
+      },
+    },
+  ],
 };
