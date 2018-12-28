@@ -19,19 +19,27 @@ module.exports = {
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.SANITY_ID,
+        saveImages: true,
         queries: [
           {
             name: 'person',
             type: 'Person',
-            groq: `
-              *[_type == 'person']{
-                _id,
-                name,
-                slug,
-                quote,
-                overview
-              }
-            `,
+            groq: `*[_type == 'person']`,
+          },
+          {
+            name: 'info',
+            type: 'Info',
+            groq: `*[_type == 'info']`,
+          },
+          {
+            name: 'story',
+            type: 'Story',
+            groq: `*[_type == 'story']`,
+          },
+          {
+            name: 'course',
+            type: 'Course',
+            groq: `*[_type == 'course']`,
           },
         ],
       },
