@@ -38,7 +38,7 @@ const StyledHome = styled.div`
     text-decoration: none;
     letter-spacing: 0.14em;
     display: block;
-    width: 160px;
+    width: 170px;
     margin: 2rem auto;
     font-size: 14px;
     transition: all 0.4s ease-in-out;
@@ -59,7 +59,7 @@ const Index = ({ data }) => {
       <div>
         <h1>{data.site.siteMetadata.title}</h1>
         <div>#myfriendisamidwife</div>
-        <Link to="/info">Have a look!</Link>
+        <Link to="/info">Find out more!</Link>
       </div>
     </StyledHome>
   );
