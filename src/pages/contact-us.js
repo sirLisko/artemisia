@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
 
 import Layout from 'src/components/Layout';
 import ContactForm from 'src/components/ContactForm';
@@ -10,6 +12,7 @@ const StyledContactForm = styled(ContactForm)`
     font-weight: 300;
     font-style: normal;
   }
+  select,
   input,
   textarea {
     padding: 12px;
@@ -17,12 +20,19 @@ const StyledContactForm = styled(ContactForm)`
     border: 1px solid #ccc;
     background: #fafafa;
     border-radius: 2px;
+  }
+  input {
     width: 100%;
     max-width: 500px;
   }
   textarea {
     max-width: 700px;
+    width: 100%;
     height: 200px;
+  }
+  select {
+    height: 50px;
+    cursor: pointer;
   }
   button {
     color: ${theme.colors.black};
@@ -43,9 +53,14 @@ const StyledContactForm = styled(ContactForm)`
       background: ${theme.colors.black};
     }
   }
+  em {
+    font-size: 0.75rem;
+  }
 `;
 
-const Index = () => {
+const Index = ({ data }) => {
+  const { edges } = data.allCourse;
+  const options = edges.map(({ node }) => node.title);
   return (
     <Layout>
       <h1>Contact us</h1>
@@ -59,9 +74,43 @@ const Index = () => {
       </p>
       <p>Prices are available as single classes or packages.</p>
       <h2 style={{ margin: '4rem auto 2rem' }}>Send us an email</h2>
-      <StyledContactForm />
+      <StyledContactForm
+        select={{
+          options,
+          label: 'I am interested in:',
+          name: 'interested_in',
+          placeholder: 'Please select a Course',
+          description:
+            'If you are interested in more than one class please specify in the message below',
+        }}
+      />
     </Layout>
   );
 };
+
+Index.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+};
+
+export const query = graphql`
+  query {
+    allCourse(sort: { fields: [order], order: ASC }) {
+      edges {
+        node {
+          title
+          quote
+          overview {
+            style
+            children {
+              text
+            }
+          }
+          price
+          duration
+        }
+      }
+    }
+  }
+`;
 
 export default Index;

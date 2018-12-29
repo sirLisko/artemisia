@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { navigate } from 'gatsby-link';
 
 function encode(data) {
@@ -33,6 +34,7 @@ export default class Contact extends React.Component {
   };
 
   render() {
+    const { select } = this.props;
     return (
       <form
         name="contact"
@@ -82,11 +84,32 @@ export default class Contact extends React.Component {
             <input type="tel" name="mobile" onChange={this.handleChange} />
           </label>
         </p>
+        {select && (
+          <p>
+            <label>
+              {select.label}
+              <br />
+              <select name={select.name} onChange={this.handleChange}>
+                <option value="">{select.placeholder}</option>
+                {select.options.map(option => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              {select.description && (
+                <div>
+                  <em>{select.description}</em>
+                </div>
+              )}
+            </label>
+          </p>
+        )}
         <p>
           <label>
             Message:
             <br />
-            <textarea name="message" onChange={this.handleChange} required />
+            <textarea name="message" onChange={this.handleChange} />
           </label>
         </p>
         <p>
@@ -96,3 +119,11 @@ export default class Contact extends React.Component {
     );
   }
 }
+
+Contact.propTypes = {
+  select: PropTypes.shape({
+    options: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+  }),
+};
