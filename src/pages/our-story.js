@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 
 import Layout from 'src/components/Layout';
 import theme from 'src/theme';
+import formatText from 'src/utils/formatText';
 
 const GridColumn = styled.div`
   & + & {
@@ -63,11 +64,7 @@ const Index = ({ data }) => {
           <GridColumn key={title}>
             <div>
               <h2>{title}</h2>
-              <div>
-                {overview.map((text, i) => (
-                  <p key={i}>{text.children[0].text}</p>
-                ))}
-              </div>
+              <div>{formatText(overview)}</div>
               {link_title && <Link to={link_url}>{link_title}</Link>}
             </div>
             {image && image.imageUrl && <img src={image.imageUrl} alt="" />}
@@ -92,6 +89,7 @@ export const query = graphql`
             style
             children {
               text
+              marks
             }
           }
           link_title
