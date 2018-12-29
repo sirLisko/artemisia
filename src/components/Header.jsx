@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
+import { Location } from '@reach/router';
 
 import theme from 'src/theme';
 
@@ -139,6 +140,36 @@ const Links = styled('ul')`
   }
 `;
 
+const StyledLink = styled.li`
+  a {
+    text-decoration: ${props => props.selected && 'underline'};
+    pointer-events: ${props => props.selected && 'none'};
+  }
+`;
+
+const links = [
+  {
+    href: '/info',
+    text: 'Home',
+  },
+  {
+    href: '/our-story',
+    text: 'Our Story',
+  },
+  {
+    href: '/classes',
+    text: 'Classes',
+  },
+  {
+    href: '/about',
+    text: 'About Us',
+  },
+  {
+    href: '/contact-us',
+    text: 'Contact',
+  },
+];
+
 const Header = () => {
   return (
     <StyledHeader role="navigation">
@@ -150,21 +181,15 @@ const Header = () => {
         <span />
       </Hamburger>
       <Links>
-        <li>
-          <Link to="/info">Home</Link>
-        </li>
-        <li>
-          <Link to="/our-story">Our Story</Link>
-        </li>
-        <li>
-          <Link to="/classes">Classes</Link>
-        </li>
-        <li>
-          <Link to="/about">About Us</Link>
-        </li>
-        <li>
-          <Link to="/contact-us">Contact</Link>
-        </li>
+        <Location>
+          {({ location }) =>
+            links.map(l => (
+              <StyledLink key={l.text} selected={l.href === location.pathname}>
+                <Link to={l.href}>{l.text}</Link>
+              </StyledLink>
+            ))
+          }
+        </Location>
       </Links>
     </StyledHeader>
   );

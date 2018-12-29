@@ -27,6 +27,7 @@ const Layout = ({ children, medium }) => (
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  medium: PropTypes.bool,
 };
 
 export default Layout;

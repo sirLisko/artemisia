@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import styled from '@emotion/styled';
 import theme from 'src/theme';
@@ -59,7 +59,7 @@ const Index = ({ data }) => {
       <div>
         <h1>{data.site.siteMetadata.title}</h1>
         <div>#myfriendisamidwife</div>
-        <a href="/info">Have a look!</a>
+        <Link to="/info">Have a look!</Link>
       </div>
     </StyledHome>
   );
