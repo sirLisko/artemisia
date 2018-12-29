@@ -6,7 +6,6 @@ import ContactForm from 'src/components/ContactForm';
 import theme from 'src/theme';
 
 const StyledContactForm = styled(ContactForm)`
-  margin-top: 5rem;
   label {
     font-weight: 300;
     font-style: normal;
@@ -59,6 +58,7 @@ const Index = () => {
         the comfort of your home, at no additional costs.
       </p>
       <p>Prices are available as single classes or packages.</p>
+      <h2 style={{ margin: '4rem auto 2rem' }}>Send us an email</h2>
       <StyledContactForm />
     </Layout>
   );

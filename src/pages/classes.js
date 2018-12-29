@@ -102,7 +102,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allCourse {
+    allCourse(sort: { fields: [order], order: ASC }) {
       edges {
         node {
           title
