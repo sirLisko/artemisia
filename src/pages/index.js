@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
-
 import styled from '@emotion/styled';
+
+import MetaTags from 'src/components/MetaTags';
 import theme from 'src/theme';
 
 const StyledHome = styled.div`
@@ -55,6 +56,7 @@ const StyledHome = styled.div`
 const Index = ({ data }) => {
   return (
     <StyledHome>
+      <MetaTags />
       <span>Antenatal classes in London</span>
       <div>
         <h1>{data.site.siteMetadata.title}</h1>

@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import { Location } from '@reach/router';
 
 import theme from 'src/theme';
 
@@ -170,7 +170,7 @@ const links = [
   },
 ];
 
-const Header = () => {
+const Header = ({ location: { pathname } }) => {
   return (
     <StyledHeader role="navigation">
       <input id="menu-toggle" type="checkbox" />
@@ -181,18 +181,20 @@ const Header = () => {
         <span />
       </Hamburger>
       <Links>
-        <Location>
-          {({ location }) =>
-            links.map(l => (
-              <StyledLink key={l.text} selected={l.href === location.pathname}>
-                <Link to={l.href}>{l.text}</Link>
-              </StyledLink>
-            ))
-          }
-        </Location>
+        {links.map(l => (
+          <StyledLink key={l.text} selected={pathname.indexOf(l.href) !== -1}>
+            <Link to={l.href}>{l.text}</Link>
+          </StyledLink>
+        ))}
       </Links>
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Header;
