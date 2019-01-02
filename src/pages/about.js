@@ -53,16 +53,26 @@ const GridColumn = styled.div`
     }
 `;
 
+const StyledQuote = styled.div`
+  text-align: right;
+  margin: 2rem auto;
+`;
+
 const Index = ({ data }) => {
   const { edges } = data.allPerson;
   return (
     <Layout>
       {edges.map(edge => {
-        const { name, overview, image } = edge.node;
+        const { name, overview, quote, image } = edge.node;
         return (
           <GridColumn key={name}>
             <div>
               <h2>{name}</h2>
+              {quote && (
+                <StyledQuote>
+                  <em>- {quote}</em>
+                </StyledQuote>
+              )}
               <div>
                 {overview.map((text, i) => (
                   <p key={i}>{text.children[0].text}</p>
@@ -87,6 +97,7 @@ export const query = graphql`
       edges {
         node {
           name
+          quote
           overview {
             style
             children {
