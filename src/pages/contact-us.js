@@ -60,7 +60,9 @@ const StyledContactForm = styled(ContactForm)`
 
 const Index = ({ data }) => {
   const { edges } = data.allCourse;
-  const options = edges.map(({ node }) => node.title);
+  const options = edges
+    .filter(({ node }) => node.title)
+    .map(({ node }) => node.title);
   return (
     <Layout>
       <h1>Contact us</h1>
@@ -80,8 +82,6 @@ const Index = ({ data }) => {
           label: 'I am interested in:',
           name: 'interested_in',
           placeholder: 'Please select a Course',
-          description:
-            'If you are interested in more than one class please specify in the message below',
         }}
       />
     </Layout>
