@@ -74,12 +74,6 @@ const Index = ({ data }) => {
                 <p key={i}>{text.children[0].text}</p>
               ))}
             </div>
-            <StyledPrice>
-              £{price}
-              <p>
-                (fee for you to attend the course as a couple or individual)
-              </p>
-            </StyledPrice>
             <StyledDuration>
               {duration
                 .map(formatDuration)
@@ -89,6 +83,14 @@ const Index = ({ data }) => {
                   null,
                 )}
             </StyledDuration>
+            {price && (
+              <StyledPrice>
+                £{price}
+                <p>
+                  (fee for you to attend the course as a couple or individual)
+                </p>
+              </StyledPrice>
+            )}
           </StyledBox>
         );
       })}
