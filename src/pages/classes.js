@@ -74,15 +74,17 @@ const Index = ({ data }) => {
                 <p key={i}>{text.children[0].text}</p>
               ))}
             </div>
-            <StyledDuration>
-              {duration
-                .map(formatDuration)
-                .reduce(
-                  (accu, elem, i) =>
-                    !accu ? [elem] : [...accu, <p key={i}>or</p>, elem],
-                  null,
-                )}
-            </StyledDuration>
+            {duration && (
+              <StyledDuration>
+                {duration
+                  .map(formatDuration)
+                  .reduce(
+                    (accu, elem, i) =>
+                      !accu ? [elem] : [...accu, <p key={i}>or</p>, elem],
+                    null,
+                  )}
+              </StyledDuration>
+            )}
             {price && (
               <StyledPrice>
                 £{price}
