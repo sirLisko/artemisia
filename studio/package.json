@@ -1,10 +1,13 @@
 {
-  "name": "artemis_cms",
+  "name": "studio",
   "private": true,
   "version": "1.0.0",
   "description": "",
-  "main": "package.json",
-  "author": "Luca Lischetti <luca@sirlisko.com>",
+  "author": {
+    "name": "Luca Lischetti",
+    "email": "luca@sirlisko.com",
+    "url": "https://sirlisko.com"
+  },
   "license": "MIT",
   "scripts": {
     "start": "sanity start",

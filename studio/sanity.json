@@ -1,20 +1,10 @@
-# Sanity Content Studio
-
-```bash
-npm install
-npm start
-```
-
-You need a sanity.json file in `/cms/`.
-
-```json
 {
   "root": true,
   "project": {
     "name": "artemis"
   },
   "api": {
-    "projectId": "<Project-Id>",
+    "projectId": "thl19cl8",
     "dataset": "production"
   },
   "plugins": [
@@ -31,4 +21,3 @@ You need a sanity.json file in `/cms/`.
     }
   ]
 }
-```
