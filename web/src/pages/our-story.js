@@ -57,7 +57,16 @@ const GridColumn = styled.div`
 const Index = ({ data }) => {
   const { edges } = data.allStory;
   return (
-    <Layout>
+    <Layout
+      extraCredit={
+        <p>
+          Humaaans illustrations made by{' '}
+          <a href="https://twitter.com/pablostanley">Pablo Stanley</a> licensed
+          by{' '}
+          <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+        </p>
+      }
+    >
       {edges.map(edge => {
         const { title, overview, image, link_title, link_url } = edge.node;
         return (

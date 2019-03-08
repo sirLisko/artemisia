@@ -56,7 +56,24 @@ const GridColumn = styled.div`
 const Index = ({ data }) => {
   const { edges } = data.allInfo;
   return (
-    <Layout>
+    <Layout
+      extraCredit={
+        <>
+          <p>
+            Humaaans illustrations made by{' '}
+            <a href="https://twitter.com/pablostanley">Pablo Stanley</a>{' '}
+            licensed by{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+          </p>
+          <p>
+            Artemis statue{' '}
+            <a href="https://www.greekmythology.com/Myths/The_Myths/Zeus's_Lovers/Leto/leto.html">
+              Leto: GreekMythology.com
+            </a>
+          </p>
+        </>
+      }
+    >
       {edges.map(edge => {
         const { title, overview, image, link_title, link_url } = edge.node;
         return (

@@ -19,14 +19,14 @@ const StyledContainer = styled.div`
   padding-top: ${rhythm(1.5)};
 `;
 
-const Layout = ({ children, medium }) => (
+const Layout = ({ children, medium, extraCredit }) => (
   <Location>
     {({ location }) => (
       <article>
         <MetaTags location={location} />
         <Header location={location} />
         <StyledContainer medium={medium}>{children}</StyledContainer>
-        <Footer />
+        <Footer extraCredit={extraCredit} />
       </article>
     )}
   </Location>
@@ -35,6 +35,7 @@ const Layout = ({ children, medium }) => (
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   medium: PropTypes.bool,
+  extraCredit: PropTypes.node,
 };
 
 export default Layout;
