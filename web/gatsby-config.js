@@ -5,6 +5,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Artemis Midwifery',
+    siteUrl: `https://artemismidwiferylondon.com`,
   },
   plugins: [
     'gatsby-plugin-emotion',
@@ -49,6 +50,20 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA,
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Artemis Midwifery - Antenatal Classes London',
+        short_name: 'Artemis Midwifery',
+        start_url: '/',
+        display: 'browser',
+        theme_color: '#000',
+        background_color: '#FFFFFF',
+        icon: `static/imgs/logo.jpg`,
       },
     },
   ],
