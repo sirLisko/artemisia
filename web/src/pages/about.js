@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
+import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
 import theme from 'src/theme';
 
@@ -62,6 +63,7 @@ const Index = ({ data }) => {
   const { edges } = data.allPerson;
   return (
     <Layout>
+      <MetaTags title="About Us" />
       {edges.map(edge => {
         const { name, overview, quote, image } = edge.node;
         return (

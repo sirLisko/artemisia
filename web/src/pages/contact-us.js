@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 
+import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
 import ContactForm from 'src/components/ContactForm';
 import theme from 'src/theme';
@@ -65,6 +66,7 @@ const Index = ({ data }) => {
     .map(({ node }) => node.title);
   return (
     <Layout>
+      <MetaTags title="Contact Us" />
       <h1>Contact us</h1>
       <p>
         Please complete the form below with all the required information and we

@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
-const MetaTags = ({ location: { pathname } = {} }) => {
+const MetaTags = ({ title }) => {
   return (
     <Helmet
       htmlAttributes={{
         lang: 'en',
       }}
-      title="Antenatal Classes in London | Artemis Midwifery"
+      title={title}
+      titleTemplate={`%s | Artemis Midwifery`}
       meta={[
         {
           name: 'description',
@@ -56,9 +57,7 @@ const MetaTags = ({ location: { pathname } = {} }) => {
 };
 
 MetaTags.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }),
+  title: PropTypes.string.isRequired,
 };
 
 export default MetaTags;

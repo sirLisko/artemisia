@@ -56,7 +56,7 @@ const StyledHome = styled.div`
 const Index = ({ data }) => {
   return (
     <StyledHome>
-      <MetaTags />
+      <MetaTags title="Antenatal Classes in London" />
       <span>Antenatal classes in London</span>
       <div>
         <h1>{data.site.siteMetadata.title}</h1>

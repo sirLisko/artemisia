@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Location } from '@reach/router';
 
-import MetaTags from 'src/components/MetaTags';
 import Header from 'src/components/Header.jsx';
 import Footer from 'src/components/Footer.jsx';
 import { rhythm } from 'src/utils/typography';
@@ -23,7 +22,6 @@ const Layout = ({ children, medium, extraCredit }) => (
   <Location>
     {({ location }) => (
       <article>
-        <MetaTags location={location} />
         <Header location={location} />
         <StyledContainer medium={medium}>{children}</StyledContainer>
         <Footer extraCredit={extraCredit} />

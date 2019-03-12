@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 
+import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
 
 const StyledBox = styled.div`
@@ -59,6 +60,7 @@ const Index = ({ data }) => {
   const { edges } = data.allCourse;
   return (
     <Layout medium>
+      <MetaTags title="Classes" />
       {edges.map(edge => {
         const { title, overview, quote, price, duration } = edge.node;
         return (
