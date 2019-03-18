@@ -47,6 +47,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-drift',
+      options: {
+        appId: process.env.DRIFT,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA,
