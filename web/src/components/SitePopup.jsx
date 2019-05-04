@@ -63,7 +63,15 @@ const SitePopup = ({ staticLayout }) => (
           <StyledPopup>
             <b>{title}</b>
             <p>
-              {text} - <a href={link}>more info</a>
+              {text} -{' '}
+              <a
+                href={link}
+                alt="more info"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                more info
+              </a>
             </p>
           </StyledPopup>
         </Fragment>
