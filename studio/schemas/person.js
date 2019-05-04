@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/io/android-people';
+import icon from 'react-icons/lib/fa/group';
 
 export default {
   name: 'person',

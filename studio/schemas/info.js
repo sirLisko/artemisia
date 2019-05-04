@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/io/ios-bookmarks';
+import icon from 'react-icons/lib/fa/paperclip';
 
 export default {
   name: 'info',

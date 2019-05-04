@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/io/ios-briefcase';
+import icon from 'react-icons/lib/fa/pencil';
 
 export default {
   name: 'story',

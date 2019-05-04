@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/io/ios-book';
+import icon from 'react-icons/lib/fa/book';
 
 export default {
   name: 'course',
