@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import styled from '@emotion/styled';
 
 import MetaTags from 'src/components/MetaTags';
+import SitePopup from 'src/components/SitePopup';
 import theme from 'src/theme';
 
 const StyledHome = styled.div`
@@ -55,15 +56,18 @@ const StyledHome = styled.div`
 
 const Index = ({ data }) => {
   return (
-    <StyledHome>
-      <MetaTags title="Antenatal Classes in London" />
-      <span>Antenatal classes in London</span>
-      <div>
-        <h1>{data.site.siteMetadata.title}</h1>
-        <div>#myfriendisamidwife</div>
-        <Link to="/info">Find out more!</Link>
-      </div>
-    </StyledHome>
+    <Fragment>
+      <StyledHome>
+        <MetaTags title="Antenatal Classes in London" />
+        <span>Antenatal classes in London</span>
+        <div>
+          <h1>{data.site.siteMetadata.title}</h1>
+          <div>#myfriendisamidwife</div>
+          <Link to="/info">Find out more!</Link>
+        </div>
+      </StyledHome>
+      <SitePopup staticLayout />
+    </Fragment>
   );
 };
 

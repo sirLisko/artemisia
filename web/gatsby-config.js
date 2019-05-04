@@ -43,6 +43,11 @@ module.exports = {
             type: 'Course',
             groq: `*[_type == 'course']`,
           },
+          {
+            name: 'sitePopup',
+            type: 'SitePopup',
+            groq: `*[_type == 'sitePopup']`,
+          },
         ],
       },
     },

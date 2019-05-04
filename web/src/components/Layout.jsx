@@ -5,6 +5,7 @@ import { Location } from '@reach/router';
 
 import Header from 'src/components/Header.jsx';
 import Footer from 'src/components/Footer.jsx';
+import SitePopup from 'src/components/SitePopup.jsx';
 import { rhythm } from 'src/utils/typography';
 import theme from 'src/theme';
 
@@ -25,6 +26,7 @@ const Layout = ({ children, medium, extraCredit }) => (
         <Header location={location} />
         <StyledContainer medium={medium}>{children}</StyledContainer>
         <Footer extraCredit={extraCredit} />
+        <SitePopup />
       </article>
     )}
   </Location>
