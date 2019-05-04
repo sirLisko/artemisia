@@ -10,6 +10,9 @@
   },
   "license": "MIT",
   "scripts": {
+    "deploy": "npm run graphql-deploy && npm run sanity-deploy",
+    "graphql-deploy": "sanity graphql deploy --playground",
+    "sanity-deploy": "sanity deploy",
     "start": "sanity start",
     "test": "sanity check"
   },
