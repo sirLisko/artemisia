@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 
 import MetaTags from 'src/components/MetaTags';
 import SitePopup from 'src/components/SitePopup';
+import Social from 'src/components/Social';
 import theme from 'src/theme';
 
 const StyledHome = styled.div`
@@ -18,11 +19,12 @@ const StyledHome = styled.div`
   span {
     letter-spacing: 0.25rem;
   }
-  & > div {
-    margin: 20vh auto;
-    ${theme.mq.small} {
-      margin: 30vh auto;
-    }
+`;
+
+const StyledMain = styled.div`
+  margin: 20vh auto;
+  ${theme.mq.small} {
+    margin: 30vh auto 25vh;
   }
   h1 {
     color: #fff;
@@ -60,11 +62,12 @@ const Index = ({ data }) => {
       <StyledHome>
         <MetaTags title="Antenatal Classes in London" />
         <span>Antenatal classes in London</span>
-        <div>
+        <StyledMain>
           <h1>{data.site.siteMetadata.title}</h1>
           <div>#myfriendisamidwife</div>
           <Link to="/info">Find out more!</Link>
-        </div>
+        </StyledMain>
+        <Social />
       </StyledHome>
       <SitePopup staticLayout />
     </Fragment>

@@ -33,6 +33,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
+    "react-icons": "^3.6.1",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19",
     "typography-theme-kirkham": "^0.16.19"
