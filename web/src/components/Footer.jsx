@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
 import theme from 'src/theme';
+import Social from './Social';
 
 const StyledFooter = styled.footer`
   max-width: ${theme.sizes.max_width};
@@ -13,6 +14,7 @@ const StyledFooter = styled.footer`
   padding-top: 2rem;
   img {
     width: 300px;
+    margin: 0;
   }
   p {
     margin-bottom: 0.25rem;
@@ -36,6 +38,7 @@ const Footer = ({ extraCredit }) => {
       <Link to="/">
         <img src="/imgs/logo.jpg" alt="logo" />
       </Link>
+      <Social isFooter />
       <StyledCredit>
         <p>
           © Copyright {new Date().getFullYear()} Artemis Midwifery ltd - All

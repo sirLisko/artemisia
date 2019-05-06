@@ -71,5 +71,11 @@ module.exports = {
         icon: `static/imgs/logo.jpg`,
       },
     },
+    {
+      resolve: `gatsby-plugin-stripe`,
+      options: {
+        async: true,
+      },
+    },
   ],
 };

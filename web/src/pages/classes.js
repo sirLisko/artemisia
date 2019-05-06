@@ -58,6 +58,25 @@ const formatDuration = (duration, i) => {
 
 const Index = ({ data }) => {
   const { edges } = data.allCourse;
+  const onClick = function() {
+    // eslint-disable-next-line no-undef
+    var stripe = Stripe('pk_test_WnusLirFGHLSFCVrWaaQtleM');
+
+    stripe
+      .redirectToCheckout({
+        items: [{ sku: 'sku_F8fAkG27rOKdKb', quantity: 1 }],
+        successUrl: 'https://artemismidwiferylondon.com/thanks/',
+        cancelUrl: 'https://your-website.com/canceled',
+      })
+      .then(function(result) {
+        if (result.error) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, display the localized error message to your customer.
+          var displayError = document.getElementById('error-message');
+          displayError.textContent = result.error.message;
+        }
+      });
+  };
   return (
     <Layout medium>
       <MetaTags title="Classes" />
@@ -95,6 +114,15 @@ const Index = ({ data }) => {
                 </p>
               </StyledPrice>
             )}
+            <button
+              id="checkout-button-sku_F8btiLe5OtmWtd"
+              role="link"
+              onClick={onClick}
+            >
+              Checkout
+            </button>
+
+            <div id="error-message" />
           </StyledBox>
         );
       })}
