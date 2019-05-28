@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
@@ -58,88 +58,104 @@ const formatDuration = (duration, i) => {
   );
 };
 
-// eslint-disable-next-line no-undef
-var stripe = Stripe(process.env.STRIPE_ARTEMIS);
+class Index extends Component {
+  state = {
+    isPaymentActive: false,
+  };
 
-const onClick = stripe_id => {
-  stripe
-    .redirectToCheckout({
-      items: [{ sku: stripe_id, quantity: 1 }],
-      successUrl: 'https://artemismidwiferylondon.com/thanks/',
-      cancelUrl: 'https://your-website.com/canceled',
-    })
-    .then(result => {
-      if (result.error) {
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-};
+  componentDidMount() {
+    if (typeof window !== `undefined`) {
+      this.stripe = window.Stripe(process.env.STRIPE_ARTEMIS);
+      this.setState({
+        isPaymentActive: window.location.search.indexOf('payment') !== -1,
+      });
+    }
+  }
 
-const Index = ({ data }) => {
-  const { edges } = data.allCourse;
-  return (
-    <Layout medium>
-      <MetaTags title="Classes" />
-      {edges.map(edge => {
-        const {
-          title,
-          overview,
-          quote,
-          price,
-          duration,
-          stripe_id,
-        } = edge.node;
-        return (
-          <StyledBox key={title} style={{ marginBottom: '1rem' }}>
-            <h2>{title}</h2>
-            {quote && (
-              <StyledQuote>
-                <em>- {quote}</em>
-              </StyledQuote>
-            )}
-            <div>
-              {overview.map((text, i) => (
-                <p key={i}>{text.children[0].text}</p>
-              ))}
-            </div>
-            {duration && (
-              <StyledDuration>
-                {duration
-                  .map(formatDuration)
-                  .reduce(
-                    (accu, elem, i) =>
-                      !accu ? [elem] : [...accu, <p key={i}>or</p>, elem],
-                    null,
-                  )}
-              </StyledDuration>
-            )}
-            {price && (
-              <StyledPrice>
-                £{price}
-                <p>
-                  (fee for you to attend the course as a couple or individual)
-                </p>
-              </StyledPrice>
-            )}
-            {window.location.search.indexOf('payment') !== -1 && stripe_id && (
+  handleClick = stripe_id => {
+    this.stripe
+      .redirectToCheckout({
+        items: [{ sku: stripe_id, quantity: 1 }],
+        successUrl: 'https://artemismidwiferylondon.com/thanks/',
+        cancelUrl: 'https://your-website.com/canceled',
+      })
+      .then(result => {
+        if (result.error) {
+          var displayError = document.getElementById('error-message');
+          displayError.textContent = result.error.message;
+        }
+      });
+  };
+
+  render() {
+    const {
+      data: {
+        allCourse: { edges },
+      },
+    } = this.props;
+    return (
+      <Layout medium>
+        <MetaTags title="Classes" />
+        {edges.map(edge => {
+          const {
+            title,
+            overview,
+            quote,
+            price,
+            duration,
+            stripe_id,
+          } = edge.node;
+          return (
+            <StyledBox key={title} style={{ marginBottom: '1rem' }}>
+              <h2>{title}</h2>
+              {quote && (
+                <StyledQuote>
+                  <em>- {quote}</em>
+                </StyledQuote>
+              )}
               <div>
-                <StyledButton
-                  id="checkout-button-sku_F8btiLe5OtmWtd"
-                  role="link"
-                  onClick={() => onClick(stripe_id)}
-                >
-                  Checkout
-                </StyledButton>
-                <div id="error-message" />
+                {overview.map((text, i) => (
+                  <p key={i}>{text.children[0].text}</p>
+                ))}
               </div>
-            )}
-          </StyledBox>
-        );
-      })}
-    </Layout>
-  );
-};
+              {duration && (
+                <StyledDuration>
+                  {duration
+                    .map(formatDuration)
+                    .reduce(
+                      (accu, elem, i) =>
+                        !accu ? [elem] : [...accu, <p key={i}>or</p>, elem],
+                      null,
+                    )}
+                </StyledDuration>
+              )}
+              {price && (
+                <StyledPrice>
+                  £{price}
+                  <p>
+                    (fee for you to attend the course as a couple or individual)
+                  </p>
+                </StyledPrice>
+              )}
+              {this.state.isPaymentActive && stripe_id && (
+                <div>
+                  <StyledButton
+                    id="checkout-button-sku_F8btiLe5OtmWtd"
+                    role="link"
+                    onClick={() => this.handleClick(stripe_id)}
+                  >
+                    Checkout
+                  </StyledButton>
+                  <div id="error-message" />
+                </div>
+              )}
+            </StyledBox>
+          );
+        })}
+      </Layout>
+    );
+  }
+}
 
 Index.propTypes = {
   data: PropTypes.shape({}).isRequired,

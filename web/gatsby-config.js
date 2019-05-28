@@ -73,9 +73,6 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-stripe`,
-      options: {
-        async: true,
-      },
     },
     {
       resolve: `gatsby-plugin-env-variables`,
