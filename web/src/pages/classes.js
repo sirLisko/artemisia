@@ -138,7 +138,7 @@ class Index extends Component {
                 </StyledPrice>
               )}
               {this.state.isPaymentActive && stripe_id && (
-                <div>
+                <div style={{ textAlign: 'right' }}>
                   <StyledButton
                     id="checkout-button-sku_F8btiLe5OtmWtd"
                     role="link"

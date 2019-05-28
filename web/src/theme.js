@@ -36,7 +36,6 @@ export const StyledButton = styled.button`
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.14em;
-  display: block;
   width: 160px;
   font-size: 14px;
   transition: all 0.4s ease-in-out;
