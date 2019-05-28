@@ -45,6 +45,11 @@ export default {
       title: 'Order',
       type: 'number',
     },
+    {
+      name: 'stripe_id',
+      title: 'Stripe SKU',
+      type: 'string',
+    },
   ],
   preview: {
     select: {

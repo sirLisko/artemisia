@@ -6,7 +6,6 @@ import { graphql } from 'gatsby';
 import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
 import ContactForm from 'src/components/ContactForm';
-import theme from 'src/theme';
 
 const StyledContactForm = styled(ContactForm)`
   label {
@@ -34,25 +33,6 @@ const StyledContactForm = styled(ContactForm)`
   select {
     height: 50px;
     cursor: pointer;
-  }
-  button {
-    color: ${theme.colors.black};
-    background: #fff;
-    cursor: pointer;
-    border: 2px solid currentColor;
-    padding: 0.75rem 0;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 0.14em;
-    display: block;
-    width: 160px;
-    font-size: 14px;
-    transition: all 0.4s ease-in-out;
-    text-align: center;
-    &:hover {
-      color: #fff;
-      background: ${theme.colors.black};
-    }
   }
   em {
     font-size: 0.75rem;
