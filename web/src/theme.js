@@ -1,4 +1,6 @@
-export default {
+import styled from '@emotion/styled';
+
+const theme = {
   colors: {
     black: '#181818',
     black_light: '#4A4A4A',
@@ -24,3 +26,25 @@ export default {
     },
   },
 };
+
+export const StyledButton = styled.button`
+  color: ${theme.colors.black};
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  padding: 0.75rem 0;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.14em;
+  display: block;
+  width: 160px;
+  font-size: 14px;
+  transition: all 0.4s ease-in-out;
+  text-align: center;
+  &:hover {
+    color: #fff;
+    background: ${theme.colors.black};
+  }
+`;
+
+export default theme;

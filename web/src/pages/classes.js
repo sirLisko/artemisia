@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 
+import { StyledButton } from 'src/theme';
+
 import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
 
@@ -122,13 +124,13 @@ const Index = ({ data }) => {
             )}
             {stripe_id && (
               <div>
-                <button
+                <StyledButton
                   id="checkout-button-sku_F8btiLe5OtmWtd"
                   role="link"
                   onClick={() => onClick(stripe_id)}
                 >
                   Checkout
-                </button>
+                </StyledButton>
                 <div id="error-message" />
               </div>
             )}

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby-link';
 
+import { StyledButton } from 'src/theme';
+
 function encode(data) {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -113,7 +115,7 @@ export default class Contact extends React.Component {
           </label>
         </p>
         <p>
-          <button type="submit">Send</button>
+          <StyledButton type="submit">Send</StyledButton>
         </p>
       </form>
     );
