@@ -122,7 +122,7 @@ const Index = ({ data }) => {
                 </p>
               </StyledPrice>
             )}
-            {stripe_id && (
+            {window.location.search.indexOf('payment') !== -1 && stripe_id && (
               <div>
                 <StyledButton
                   id="checkout-button-sku_F8btiLe5OtmWtd"
