@@ -71,5 +71,17 @@ module.exports = {
         icon: `static/imgs/logo.jpg`,
       },
     },
+    {
+      resolve: `gatsby-plugin-stripe`,
+      options: {
+        async: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ['STRIPE_ARTEMIS'],
+      },
+    },
   ],
 };
