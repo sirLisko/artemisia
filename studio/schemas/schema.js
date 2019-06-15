@@ -8,7 +8,9 @@ import course from './course';
 import person from './person';
 import info from './info';
 import story from './story';
-import popup from './popup';
+import sitePopup from './sitePopup';
+import stripeSettings from './stripeSettings';
+import stripeProduct from './stripeProduct';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -23,7 +25,9 @@ export default createSchema({
     person,
     info,
     story,
-    popup,
+    sitePopup,
+    stripeSettings,
+    stripeProduct,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
   ]),

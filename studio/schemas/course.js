@@ -51,9 +51,19 @@ export default {
       type: 'number',
     },
     {
-      name: 'stripe_id',
-      title: 'Stripe SKU',
+      name: 'where',
+      title: 'Where',
       type: 'string',
+    },
+    {
+      name: 'when',
+      title: 'When',
+      type: 'string',
+    },
+    {
+      name: 'stripeProduct',
+      title: 'Stripe',
+      type: 'stripeProduct',
     },
   ],
   preview: {

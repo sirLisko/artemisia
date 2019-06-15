@@ -60,15 +60,18 @@ const formatDuration = (duration, i) => {
 
 class Index extends Component {
   state = {
-    isPaymentActive: false,
+    stripeVisible: false,
   };
 
   componentDidMount() {
-    if (typeof window !== `undefined`) {
-      this.stripe = window.Stripe(process.env.STRIPE_ARTEMIS);
-      this.setState({
-        isPaymentActive: window.location.search.indexOf('payment') !== -1,
-      });
+    const {
+      data: {
+        sanityStripeSettings: { apikey, checkout_visible },
+      },
+    } = this.props;
+    if (checkout_visible && apikey) {
+      this.stripe = window.Stripe(apikey);
+      this.setState({ stripeVisible: true });
     }
   }
 
@@ -78,6 +81,7 @@ class Index extends Component {
         items: [{ sku: stripe_id, quantity: 1 }],
         successUrl: 'https://artemismidwiferylondon.com/thanks/',
         cancelUrl: 'https://your-website.com/canceled',
+        submitType: 'book',
       })
       .then(result => {
         if (result.error) {
@@ -93,6 +97,7 @@ class Index extends Component {
         allSanityCourse: { edges },
       },
     } = this.props;
+    const { stripeVisible } = this.state;
     return (
       <Layout medium>
         <MetaTags title="Classes" />
@@ -103,7 +108,7 @@ class Index extends Component {
             quote,
             price,
             duration,
-            stripe_id,
+            stripeProduct,
           } = edge.node;
           return (
             <StyledBox key={title} style={{ marginBottom: '1rem' }}>
@@ -137,12 +142,11 @@ class Index extends Component {
                   </p>
                 </StyledPrice>
               )}
-              {this.state.isPaymentActive && stripe_id && (
+              {stripeVisible && stripeProduct && stripeProduct.sku && (
                 <div style={{ textAlign: 'right' }}>
                   <StyledButton
-                    id="checkout-button-sku_F8btiLe5OtmWtd"
                     role="link"
-                    onClick={() => this.handleClick(stripe_id)}
+                    onClick={() => this.handleClick(stripeProduct.sku)}
                   >
                     Checkout
                   </StyledButton>
@@ -176,9 +180,15 @@ export const query = graphql`
           }
           price
           duration
-          stripe_id
+          stripeProduct {
+            sku
+          }
         }
       }
+    }
+    sanityStripeSettings {
+      apikey
+      checkout_visible
     }
   }
 `;

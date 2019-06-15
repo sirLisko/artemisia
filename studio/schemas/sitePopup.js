@@ -4,7 +4,6 @@ export default {
   name: 'sitePopup',
   title: 'Site Popup',
   type: 'document',
-  liveEdit: false,
   icon: FaBullhorn,
   fields: [
     {
