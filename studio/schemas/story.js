@@ -19,7 +19,12 @@ export default {
     {
       name: 'overview',
       title: 'Overview',
-      type: 'blockContent',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
     },
     {
       name: 'image',
