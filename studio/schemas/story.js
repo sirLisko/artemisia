@@ -1,10 +1,10 @@
-import icon from 'react-icons/lib/fa/pencil';
+import { FaPencilAlt } from 'react-icons/fa';
 
 export default {
   name: 'story',
   title: 'Story',
   type: 'document',
-  icon,
+  icon: FaPencilAlt,
   fields: [
     {
       name: 'title',

@@ -1,10 +1,10 @@
-import icon from 'react-icons/lib/fa/book';
+import { FaBook } from 'react-icons/fa';
 
 export default {
   name: 'course',
   title: 'Classes',
   type: 'document',
-  icon,
+  icon: FaBook,
   fields: [
     {
       name: 'title',

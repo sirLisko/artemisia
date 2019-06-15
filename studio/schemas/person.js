@@ -1,10 +1,10 @@
-import icon from 'react-icons/lib/fa/group';
+import { FaUsers } from 'react-icons/fa';
 
 export default {
   name: 'person',
   title: 'Persons',
   type: 'document',
-  icon,
+  icon: FaUsers,
   fields: [
     {
       name: 'name',

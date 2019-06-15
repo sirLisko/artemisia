@@ -1,11 +1,11 @@
-import icon from 'react-icons/lib/fa/bullhorn';
+import { FaBullhorn } from 'react-icons/fa';
 
 export default {
   name: 'sitePopup',
   title: 'Site Popup',
   type: 'document',
   liveEdit: false,
-  icon,
+  icon: FaBullhorn,
   fields: [
     {
       name: 'title',

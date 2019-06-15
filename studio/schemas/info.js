@@ -1,10 +1,10 @@
-import icon from 'react-icons/lib/fa/paperclip';
+import { FaPaperclip } from 'react-icons/fa';
 
 export default {
   name: 'info',
   title: 'Info',
   type: 'document',
-  icon,
+  icon: FaPaperclip,
   fields: [
     {
       name: 'title',
