@@ -90,7 +90,7 @@ class Index extends Component {
   render() {
     const {
       data: {
-        allCourse: { edges },
+        allSanityCourse: { edges },
       },
     } = this.props;
     return (
@@ -163,7 +163,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allCourse(sort: { fields: [order], order: ASC }) {
+    allSanityCourse(sort: { fields: [order], order: ASC }) {
       edges {
         node {
           title

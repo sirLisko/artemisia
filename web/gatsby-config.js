@@ -21,34 +21,11 @@ module.exports = {
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.SANITY_ID,
+        dataset: 'production',
+        token: process.env.SANITY_TOKEN,
+        watchMode: true,
+        overlayDrafts: true,
         saveImages: true,
-        queries: [
-          {
-            name: 'person',
-            type: 'Person',
-            groq: `*[_type == 'person']`,
-          },
-          {
-            name: 'info',
-            type: 'Info',
-            groq: `*[_type == 'info']`,
-          },
-          {
-            name: 'story',
-            type: 'Story',
-            groq: `*[_type == 'story']`,
-          },
-          {
-            name: 'course',
-            type: 'Course',
-            groq: `*[_type == 'course']`,
-          },
-          {
-            name: 'sitePopup',
-            type: 'SitePopup',
-            groq: `*[_type == 'sitePopup']`,
-          },
-        ],
       },
     },
     {

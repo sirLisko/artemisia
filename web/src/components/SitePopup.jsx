@@ -6,15 +6,11 @@ import { Global, css } from '@emotion/core';
 
 const popupQuery = graphql`
   query {
-    allSitePopup {
-      edges {
-        node {
-          title
-          text
-          link
-          visible
-        }
-      }
+    sanitySitePopup {
+      title
+      text
+      link
+      visible
     }
   }
 `;
@@ -46,14 +42,7 @@ const globalPadding = (
 const SitePopup = ({ staticLayout }) => (
   <StaticQuery
     query={popupQuery}
-    render={({
-      allSitePopup: {
-        edges: [
-          { node: { title, text, link, visible } = {} },
-          ...otherEdges
-        ] = [],
-      },
-    }) => {
+    render={({ sanitySitePopup: { title, text, link, visible } = {} }) => {
       if (!visible) {
         return null;
       }

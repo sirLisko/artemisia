@@ -55,7 +55,7 @@ const GridColumn = styled.div`
 `;
 
 const Index = ({ data }) => {
-  const { edges } = data.allInfo;
+  const { edges } = data.allSanityInfo;
   return (
     <Layout
       extraCredit={
@@ -89,7 +89,9 @@ const Index = ({ data }) => {
               </div>
               {link_title && <Link to={link_url}>{link_title}</Link>}
             </div>
-            {image && image.imageUrl && <img src={image.imageUrl} alt="" />}
+            {image && image.asset && image.asset.url && (
+              <img src={image.asset.url} alt="" />
+            )}
           </GridColumn>
         );
       })}
@@ -103,7 +105,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allInfo(sort: { fields: [order], order: ASC }) {
+    allSanityInfo(sort: { fields: [order], order: ASC }) {
       edges {
         node {
           title
@@ -116,7 +118,9 @@ export const query = graphql`
           link_title
           link_url
           image {
-            imageUrl
+            asset {
+              url
+            }
           }
           order
         }

@@ -40,7 +40,7 @@ const StyledContactForm = styled(ContactForm)`
 `;
 
 const Index = ({ data }) => {
-  const { edges } = data.allCourse;
+  const { edges } = data.allSanityCourse;
   const options = edges
     .filter(({ node }) => node.title)
     .map(({ node }) => node.title);
@@ -76,7 +76,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allCourse(sort: { fields: [order], order: ASC }) {
+    allSanityCourse(sort: { fields: [order], order: ASC }) {
       edges {
         node {
           title

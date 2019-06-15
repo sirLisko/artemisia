@@ -60,7 +60,7 @@ const StyledQuote = styled.div`
 `;
 
 const Index = ({ data }) => {
-  const { edges } = data.allPerson;
+  const { edges } = data.allSanityPerson;
   return (
     <Layout>
       <MetaTags title="About Us" />
@@ -81,7 +81,9 @@ const Index = ({ data }) => {
                 ))}
               </div>
             </div>
-            {image && image.imageUrl && <img src={image.imageUrl} alt="" />}
+            {image && image.asset && image.asset.url && (
+              <img src={image.asset.url} alt="" />
+            )}
           </GridColumn>
         );
       })}
@@ -95,7 +97,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allPerson(sort: { fields: [name], order: ASC }) {
+    allSanityPerson(sort: { fields: [name], order: ASC }) {
       edges {
         node {
           name
@@ -107,7 +109,9 @@ export const query = graphql`
             }
           }
           image {
-            imageUrl
+            asset {
+              url
+            }
           }
         }
       }
