@@ -32,6 +32,11 @@ export default {
       type: 'number',
     },
     {
+      name: 'price_coupon',
+      title: 'Price with Coupon',
+      type: 'number',
+    },
+    {
       name: 'duration',
       title: 'Duration',
       type: 'array',

@@ -3,14 +3,14 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'apikey',
-      title: 'API key',
-      type: 'string',
-    },
-    {
       name: 'checkout_visible',
       title: 'Checkout visible',
       type: 'boolean',
+    },
+    {
+      name: 'apikey',
+      title: 'API key',
+      type: 'string',
     },
     {
       name: 'coupon',

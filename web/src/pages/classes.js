@@ -26,6 +26,10 @@ const StyledPrice = styled.div`
   font-weight: bold;
   text-align: right;
   margin: 2rem auto;
+  span {
+    text-decoration: ${props => props.hasDiscount && 'line-through'};
+    font-weight: ${props => props.hasDiscount && 'normal'};
+  }
   p {
     font-size: 12px;
     font-weight: normal;
@@ -61,17 +65,21 @@ const formatDuration = (duration, i) => {
 class Index extends Component {
   state = {
     stripeVisible: false,
+    hasDiscount: false,
   };
 
   componentDidMount() {
     const {
       data: {
-        sanityStripeSettings: { apikey, checkout_visible },
+        sanityStripeSettings: { apikey, checkout_visible, coupon },
       },
     } = this.props;
     if (checkout_visible && apikey) {
       this.stripe = window.Stripe(apikey);
       this.setState({ stripeVisible: true });
+    }
+    if (window.location.search.indexOf(coupon) !== -1) {
+      this.setState({ hasDiscount: true });
     }
   }
 
@@ -97,7 +105,7 @@ class Index extends Component {
         allSanityCourse: { edges },
       },
     } = this.props;
-    const { stripeVisible } = this.state;
+    const { stripeVisible, hasDiscount } = this.state;
     return (
       <Layout medium>
         <MetaTags title="Classes" />
@@ -107,9 +115,11 @@ class Index extends Component {
             overview,
             quote,
             price,
+            price_coupon,
             duration,
             stripeProduct,
           } = edge.node;
+          const productDiscounted = hasDiscount && price_coupon;
           return (
             <StyledBox key={title} style={{ marginBottom: '1rem' }}>
               <h2>{title}</h2>
@@ -135,8 +145,9 @@ class Index extends Component {
                 </StyledDuration>
               )}
               {price && (
-                <StyledPrice>
-                  £{price}
+                <StyledPrice hasDiscount={productDiscounted}>
+                  <span>£{price}</span>{' '}
+                  {productDiscounted && `£${productDiscounted}`}
                   <p>
                     (fee for you to attend the course as a couple or individual)
                   </p>
@@ -146,9 +157,15 @@ class Index extends Component {
                 <div style={{ textAlign: 'right' }}>
                   <StyledButton
                     role="link"
-                    onClick={() => this.handleClick(stripeProduct.sku)}
+                    onClick={() =>
+                      this.handleClick(
+                        hasDiscount
+                          ? stripeProduct.sku_coupon || stripeProduct.sku
+                          : stripeProduct.sku,
+                      )
+                    }
                   >
-                    Checkout
+                    Book
                   </StyledButton>
                   <div id="error-message" />
                 </div>
@@ -179,9 +196,11 @@ export const query = graphql`
             }
           }
           price
+          price_coupon
           duration
           stripeProduct {
             sku
+            sku_coupon
           }
         }
       }
@@ -189,6 +208,7 @@ export const query = graphql`
     sanityStripeSettings {
       apikey
       checkout_visible
+      coupon
     }
   }
 `;
