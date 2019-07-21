@@ -200,7 +200,6 @@ export const query = graphql`
           duration
           stripeProduct {
             sku
-            sku_coupon
           }
         }
       }
