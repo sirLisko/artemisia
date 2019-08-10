@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import styled from '@emotion/styled';
+import BlockContent from '@sanity/block-content-to-react';
 
 import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
 import theme from 'src/theme';
-import formatText from 'src/utils/formatText';
 
 const GridColumn = styled.div`
   & + & {
@@ -70,12 +70,12 @@ const Index = ({ data }) => {
     >
       <MetaTags title="Our Story" />
       {edges.map(edge => {
-        const { title, overview, image, link_title, link_url } = edge.node;
+        const { title, _rawOverview, image, link_title, link_url } = edge.node;
         return (
           <GridColumn key={title}>
             <div>
               <h2>{title}</h2>
-              <div>{formatText(overview)}</div>
+              <BlockContent blocks={_rawOverview} />
               {link_title && <Link to={link_url}>{link_title}</Link>}
             </div>
             {image && image.asset && image.asset.url && (
@@ -98,13 +98,7 @@ export const query = graphql`
       edges {
         node {
           title
-          overview {
-            style
-            children {
-              text
-              marks
-            }
-          }
+          _rawOverview
           link_title
           link_url
           image {

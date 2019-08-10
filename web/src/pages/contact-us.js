@@ -81,12 +81,6 @@ export const query = graphql`
         node {
           title
           quote
-          overview {
-            style
-            children {
-              text
-            }
-          }
           price
           duration
         }

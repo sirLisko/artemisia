@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import BlockContent from '@sanity/block-content-to-react';
 
 import MetaTags from 'src/components/MetaTags';
 import Layout from 'src/components/Layout';
@@ -65,7 +66,7 @@ const Index = ({ data }) => {
     <Layout>
       <MetaTags title="About Us" />
       {edges.map(edge => {
-        const { name, overview, quote, image } = edge.node;
+        const { name, _rawOverview, quote, image } = edge.node;
         return (
           <GridColumn key={name}>
             <div>
@@ -76,9 +77,7 @@ const Index = ({ data }) => {
                 </StyledQuote>
               )}
               <div>
-                {overview.map((text, i) => (
-                  <p key={i}>{text.children[0].text}</p>
-                ))}
+                <BlockContent blocks={_rawOverview} />
               </div>
             </div>
             {image && image.asset && image.asset.url && (
@@ -102,12 +101,7 @@ export const query = graphql`
         node {
           name
           quote
-          overview {
-            style
-            children {
-              text
-            }
-          }
+          _rawOverview
           image {
             asset {
               url

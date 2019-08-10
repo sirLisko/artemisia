@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { StyledButton } from 'src/theme';
 
@@ -112,7 +113,7 @@ class Index extends Component {
         {edges.map(edge => {
           const {
             title,
-            overview,
+            _rawOverview,
             quote,
             price,
             price_coupon,
@@ -128,11 +129,7 @@ class Index extends Component {
                   <em>- {quote}</em>
                 </StyledQuote>
               )}
-              <div>
-                {overview.map((text, i) => (
-                  <p key={i}>{text.children[0].text}</p>
-                ))}
-              </div>
+              <BlockContent blocks={_rawOverview} />
               {duration && (
                 <StyledDuration>
                   {duration
@@ -189,12 +186,7 @@ export const query = graphql`
         node {
           title
           quote
-          overview {
-            style
-            children {
-              text
-            }
-          }
+          _rawOverview
           price
           price_coupon
           duration
