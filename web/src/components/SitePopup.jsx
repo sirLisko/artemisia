@@ -51,17 +51,21 @@ const SitePopup = ({ staticLayout }) => (
           {!staticLayout && globalPadding}
           <StyledPopup>
             <b>{title}</b>
-            <p>
-              {text} -{' '}
-              <a
-                href={link}
-                alt="more info"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                more info
-              </a>
-            </p>
+            {(text || link) && (
+              <p>
+                {text} {text && link && '- '}
+                {link && (
+                  <a
+                    href={link}
+                    alt="more info"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    more info
+                  </a>
+                )}
+              </p>
+            )}
           </StyledPopup>
         </Fragment>
       );
